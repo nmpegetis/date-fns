@@ -30,6 +30,7 @@ type Interval = {
   start: Date | string | number,
   end: Date | string | number
 }
+type IntervalAliased = Interval
 
 type Options = {
   weekStartsOn?: 0 | 1 | 2 | 3 | 4 | 5 | 6,
@@ -42,6 +43,7 @@ type Options = {
   roundingMethod?: 'floor' | 'ceil' | 'round',
   awareOfUnicodeTokens?: boolean
 }
+type OptionsAliased = Options
 
 type Locale = {
   formatDistance: Function,
@@ -70,6 +72,17 @@ type Locale = {
     weekStartsOn?: 0 | 1 | 2 | 3 | 4 | 5 | 6,
     firstWeekContainsDate?: 1 | 2 | 3 | 4 | 5 | 6 | 7
   }
+}
+type LocaleAliased = Locale
+
+// Exported Type Aliases
+
+declare module 'date-fns' {
+  export type Interval = IntervalAliased
+
+  export type Options = OptionsAliased
+
+  export type Locale = LocaleAliased
 }
 
 // Regular Functions
@@ -787,6 +800,13 @@ declare module 'date-fns' {
     options?: Options
   ): Date
   namespace parse {}
+
+  function roundToNearestMinutes (
+    date: Date | string | number,
+    nearestTo?: number,
+    options?: Options
+  ): Date
+  namespace roundToNearestMinutes {}
 
   function setDate (
     date: Date | string | number,
@@ -1592,6 +1612,11 @@ declare module 'date-fns/parse' {
   export = parse
 }
 
+declare module 'date-fns/roundToNearestMinutes' {
+  import {roundToNearestMinutes} from 'date-fns'
+  export = roundToNearestMinutes
+}
+
 declare module 'date-fns/setDate' {
   import {setDate} from 'date-fns'
   export = setDate
@@ -2332,6 +2357,11 @@ declare module 'date-fns/parse/index' {
   export = parse
 }
 
+declare module 'date-fns/roundToNearestMinutes/index' {
+  import {roundToNearestMinutes} from 'date-fns'
+  export = roundToNearestMinutes
+}
+
 declare module 'date-fns/setDate/index' {
   import {setDate} from 'date-fns'
   export = setDate
@@ -3070,6 +3100,11 @@ declare module 'date-fns/min/index.js' {
 declare module 'date-fns/parse/index.js' {
   import {parse} from 'date-fns'
   export = parse
+}
+
+declare module 'date-fns/roundToNearestMinutes/index.js' {
+  import {roundToNearestMinutes} from 'date-fns'
+  export = roundToNearestMinutes
 }
 
 declare module 'date-fns/setDate/index.js' {
@@ -3924,6 +3959,12 @@ declare module 'date-fns/fp' {
 
   const parseWithOptions: CurriedFn4<Options, Date | string | number, string, string, Date>
   namespace parseWithOptions {}
+
+  const roundToNearestMinutes: CurriedFn2<number, Date | string | number, Date>
+  namespace roundToNearestMinutes {}
+
+  const roundToNearestMinutesWithOptions: CurriedFn3<Options, number, Date | string | number, Date>
+  namespace roundToNearestMinutesWithOptions {}
 
   const setDate: CurriedFn2<number, Date | string | number, Date>
   namespace setDate {}
@@ -5252,6 +5293,16 @@ declare module 'date-fns/fp/parse' {
 declare module 'date-fns/fp/parseWithOptions' {
   import {parseWithOptions} from 'date-fns/fp'
   export = parseWithOptions
+}
+
+declare module 'date-fns/fp/roundToNearestMinutes' {
+  import {roundToNearestMinutes} from 'date-fns/fp'
+  export = roundToNearestMinutes
+}
+
+declare module 'date-fns/fp/roundToNearestMinutesWithOptions' {
+  import {roundToNearestMinutesWithOptions} from 'date-fns/fp'
+  export = roundToNearestMinutesWithOptions
 }
 
 declare module 'date-fns/fp/setDate' {
@@ -6734,6 +6785,16 @@ declare module 'date-fns/fp/parseWithOptions/index' {
   export = parseWithOptions
 }
 
+declare module 'date-fns/fp/roundToNearestMinutes/index' {
+  import {roundToNearestMinutes} from 'date-fns/fp'
+  export = roundToNearestMinutes
+}
+
+declare module 'date-fns/fp/roundToNearestMinutesWithOptions/index' {
+  import {roundToNearestMinutesWithOptions} from 'date-fns/fp'
+  export = roundToNearestMinutesWithOptions
+}
+
 declare module 'date-fns/fp/setDate/index' {
   import {setDate} from 'date-fns/fp'
   export = setDate
@@ -8214,6 +8275,16 @@ declare module 'date-fns/fp/parseWithOptions/index.js' {
   export = parseWithOptions
 }
 
+declare module 'date-fns/fp/roundToNearestMinutes/index.js' {
+  import {roundToNearestMinutes} from 'date-fns/fp'
+  export = roundToNearestMinutes
+}
+
+declare module 'date-fns/fp/roundToNearestMinutesWithOptions/index.js' {
+  import {roundToNearestMinutesWithOptions} from 'date-fns/fp'
+  export = roundToNearestMinutesWithOptions
+}
+
 declare module 'date-fns/fp/setDate/index.js' {
   import {setDate} from 'date-fns/fp'
   export = setDate
@@ -9310,6 +9381,13 @@ declare module 'date-fns/esm' {
   ): Date
   namespace parse {}
 
+  function roundToNearestMinutes (
+    date: Date | string | number,
+    nearestTo?: number,
+    options?: Options
+  ): Date
+  namespace roundToNearestMinutes {}
+
   function setDate (
     date: Date | string | number,
     dayOfMonth: number,
@@ -10114,6 +10192,11 @@ declare module 'date-fns/esm/parse' {
   export default parse
 }
 
+declare module 'date-fns/esm/roundToNearestMinutes' {
+  import {roundToNearestMinutes} from 'date-fns/esm'
+  export default roundToNearestMinutes
+}
+
 declare module 'date-fns/esm/setDate' {
   import {setDate} from 'date-fns/esm'
   export default setDate
@@ -10854,6 +10937,11 @@ declare module 'date-fns/esm/parse/index' {
   export default parse
 }
 
+declare module 'date-fns/esm/roundToNearestMinutes/index' {
+  import {roundToNearestMinutes} from 'date-fns/esm'
+  export default roundToNearestMinutes
+}
+
 declare module 'date-fns/esm/setDate/index' {
   import {setDate} from 'date-fns/esm'
   export default setDate
@@ -11592,6 +11680,11 @@ declare module 'date-fns/esm/min/index.js' {
 declare module 'date-fns/esm/parse/index.js' {
   import {parse} from 'date-fns/esm'
   export default parse
+}
+
+declare module 'date-fns/esm/roundToNearestMinutes/index.js' {
+  import {roundToNearestMinutes} from 'date-fns/esm'
+  export default roundToNearestMinutes
 }
 
 declare module 'date-fns/esm/setDate/index.js' {
@@ -12446,6 +12539,12 @@ declare module 'date-fns/esm/fp' {
 
   const parseWithOptions: CurriedFn4<Options, Date | string | number, string, string, Date>
   namespace parseWithOptions {}
+
+  const roundToNearestMinutes: CurriedFn2<number, Date | string | number, Date>
+  namespace roundToNearestMinutes {}
+
+  const roundToNearestMinutesWithOptions: CurriedFn3<Options, number, Date | string | number, Date>
+  namespace roundToNearestMinutesWithOptions {}
 
   const setDate: CurriedFn2<number, Date | string | number, Date>
   namespace setDate {}
@@ -13774,6 +13873,16 @@ declare module 'date-fns/esm/fp/parse' {
 declare module 'date-fns/esm/fp/parseWithOptions' {
   import {parseWithOptions} from 'date-fns/esm/fp'
   export default parseWithOptions
+}
+
+declare module 'date-fns/esm/fp/roundToNearestMinutes' {
+  import {roundToNearestMinutes} from 'date-fns/esm/fp'
+  export default roundToNearestMinutes
+}
+
+declare module 'date-fns/esm/fp/roundToNearestMinutesWithOptions' {
+  import {roundToNearestMinutesWithOptions} from 'date-fns/esm/fp'
+  export default roundToNearestMinutesWithOptions
 }
 
 declare module 'date-fns/esm/fp/setDate' {
@@ -15256,6 +15365,16 @@ declare module 'date-fns/esm/fp/parseWithOptions/index' {
   export default parseWithOptions
 }
 
+declare module 'date-fns/esm/fp/roundToNearestMinutes/index' {
+  import {roundToNearestMinutes} from 'date-fns/esm/fp'
+  export default roundToNearestMinutes
+}
+
+declare module 'date-fns/esm/fp/roundToNearestMinutesWithOptions/index' {
+  import {roundToNearestMinutesWithOptions} from 'date-fns/esm/fp'
+  export default roundToNearestMinutesWithOptions
+}
+
 declare module 'date-fns/esm/fp/setDate/index' {
   import {setDate} from 'date-fns/esm/fp'
   export default setDate
@@ -16734,6 +16853,16 @@ declare module 'date-fns/esm/fp/parse/index.js' {
 declare module 'date-fns/esm/fp/parseWithOptions/index.js' {
   import {parseWithOptions} from 'date-fns/esm/fp'
   export default parseWithOptions
+}
+
+declare module 'date-fns/esm/fp/roundToNearestMinutes/index.js' {
+  import {roundToNearestMinutes} from 'date-fns/esm/fp'
+  export default roundToNearestMinutes
+}
+
+declare module 'date-fns/esm/fp/roundToNearestMinutesWithOptions/index.js' {
+  import {roundToNearestMinutesWithOptions} from 'date-fns/esm/fp'
+  export default roundToNearestMinutesWithOptions
 }
 
 declare module 'date-fns/esm/fp/setDate/index.js' {
@@ -19527,6 +19656,12 @@ interface dateFns {
     dateString: string,
     formatString: string,
     baseDate: Date | string | number,
+    options?: Options
+  ): Date
+
+  roundToNearestMinutes(
+    date: Date | string | number,
+    nearestTo?: number,
     options?: Options
   ): Date
 

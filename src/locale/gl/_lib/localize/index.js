@@ -14,8 +14,34 @@ var quarterValues = {
 
 var monthValues = {
   narrow: ['e', 'f', 'm', 'a', 'm', 'j', 'j', 'a', 's', 'o', 'n', 'd'],
-  abbreviated: ['xan', 'feb', 'mar', 'abr', 'mai', 'xun', 'xul', 'ago', 'set', 'out', 'nov', 'dec'],
-  wide: ['xaneiro', 'febreiro', 'marzo', 'abril', 'maio', 'xuño', 'xullo', 'agosto', 'setembro', 'outubro', 'novembro', 'decembro']
+  abbreviated: [
+    'xan',
+    'feb',
+    'mar',
+    'abr',
+    'mai',
+    'xun',
+    'xul',
+    'ago',
+    'set',
+    'out',
+    'nov',
+    'dec'
+  ],
+  wide: [
+    'xaneiro',
+    'febreiro',
+    'marzo',
+    'abril',
+    'maio',
+    'xuño',
+    'xullo',
+    'agosto',
+    'setembro',
+    'outubro',
+    'novembro',
+    'decembro'
+  ]
 }
 
 var dayValues = {
@@ -71,7 +97,7 @@ var formattingDayPeriodValues = {
   abbreviated: {
     am: 'AM',
     pm: 'PM',
-    midnight: 'medianoche',
+    midnight: 'medianoite',
     noon: 'mediodía',
     morning: 'da mañá',
     afternoon: 'da tarde',
@@ -90,7 +116,7 @@ var formattingDayPeriodValues = {
   }
 }
 
-function ordinalNumber (dirtyNumber) {
+function ordinalNumber(dirtyNumber) {
   var number = Number(dirtyNumber)
   return number + 'º'
 }
@@ -106,7 +132,7 @@ var localize = {
   quarter: buildLocalizeFn({
     values: quarterValues,
     defaultWidth: 'wide',
-    argumentCallback: function (quarter) {
+    argumentCallback: function(quarter) {
       return Number(quarter) - 1
     }
   }),

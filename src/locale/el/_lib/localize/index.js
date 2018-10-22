@@ -59,38 +59,38 @@ var dayValues = {
   ]
 }
 
-var dayPeriodValues = {
-  narrow: {
-    am: 'πμ',
-    pm: 'μμ',
-    midnight: 'μεσάνυχτα',
-    noon: 'μεσημέρι',
-    morning: 'πρωί',
-    afternoon: 'απόγευμα',
-    evening: 'βράδυ',
-    night: 'νύχτα'
-  },
-  abbreviated: {
-    am: 'πμ',
-    pm: 'μμ',
-    midnight: 'μεσάνυχτα',
-    noon: 'μεσημέρι',
-    morning: 'πρωί',
-    afternoon: 'απόγευμα',
-    evening: 'βράδυ',
-    night: 'νύχτα'
-  },
-  wide: {
-    am: 'π.μ.',
-    pm: 'μ.μ.',
-    midnight: 'μεσάνυχτα',
-    noon: 'μεσημέρι',
-    morning: 'πρωί',
-    afternoon: 'μεσημέρι',
-    evening: 'βράδυ',
-    night: 'νύχτα'
-  }
+var formattingMonthValues = {
+  narrow: ['Ι', 'Φ', 'Μ', 'Α', 'Μ', 'Ι', 'Ι', 'Α', 'Σ', 'Ο', 'Ν', 'Δ'],
+  abbreviated: [
+    'Ιαν',
+    'Φεβ',
+    'Μαρ',
+    'Απρ',
+    'Μαϊ',
+    'Ιουν',
+    'Ιουλ',
+    'Αυγ',
+    'Σεπ',
+    'Οκτ',
+    'Νοε',
+    'Δεκ'
+  ],
+  wide: [
+    'Ιανουαρίου',
+    'Φεβρουαρίου',
+    'Μαρτίου',
+    'Απριλίου',
+    'Μαΐου',
+    'Ιουνίου',
+    'Ιουλίου',
+    'Αυγούστου',
+    'Σεπτεμβρίου',
+    'Οκτωβρίου',
+    'Νοεμβρίου',
+    'Δεκεμβρίου'
+  ]
 }
+
 var formattingDayPeriodValues = {
   narrow: {
     am: 'πμ',
@@ -124,48 +124,67 @@ var formattingDayPeriodValues = {
   }
 }
 
-function ordinalNumber(dirtyNumber, dirtyOptions) {
-  var number = Number(dirtyNumber)
-
-  // If ordinal numbers depend on context, for example,
-  // if they are different for different grammatical genders,
-  // use `options.unit`:
-  //
-  //   var options = dirtyOptions || {}
-  //   var unit = String(options.unit)
-  //
-  // where `unit` can be 'year', 'quarter', 'month', 'week', 'date', 'dayOfYear',
-  // 'day', 'hour', 'minute', 'second'
-  // var ordinalSuffixes = {
-  //     month: 'ος',
-  //     dayOfMonth: 'η',
-  //     dayOfYear: 'η',
-  //     dayOfWeek: 'η',
-  //     quarter: 'ο',
-  //     week: 'η',
-  //     isoWeek: 'η'
-  var rem100 = number % 100
-  if (rem100 > 20 || rem100 < 10) {
-    switch (rem100 % 10) {
-      case 1:
-        return number + 'st'
-      case 2:
-        return number + 'nd'
-      case 3:
-        return number + 'rd'
-    }
+var dayPeriodValues = {
+  narrow: {
+    am: 'πμ',
+    pm: 'μμ',
+    midnight: 'μεσάνυχτα',
+    noon: 'μεσημέρι',
+    morning: 'πρωί',
+    afternoon: 'απόγευμα',
+    evening: 'βράδυ',
+    night: 'νύχτα'
+  },
+  abbreviated: {
+    am: 'π.μ.',
+    pm: 'μ.μ.',
+    midnight: 'μεσάνυχτα',
+    noon: 'μεσημέρι',
+    morning: 'πρωί',
+    afternoon: 'απόγευμα',
+    evening: 'βράδυ',
+    night: 'νύχτα'
+  },
+  wide: {
+    am: 'π.μ.',
+    pm: 'μ.μ.',
+    midnight: 'μεσάνυχτα',
+    noon: 'μεσημέρι',
+    morning: 'πρωί',
+    afternoon: 'απόγευμα',
+    evening: 'βράδυ',
+    night: 'νύχτα'
   }
-  return number + 'th'
+}
+
+function ordinalNumber(dirtyNumber, dirtyOptions) {
+  var options = dirtyOptions || {}
+  var unit = String(options.unit)
+  var suffix
+
+  if (unit === 'year' || unit === 'month') {
+    suffix = 'ος'
+  } else if (
+    unit === 'week' ||
+    unit === 'dayOfYear' ||
+    unit === 'day' ||
+    unit === 'hour' ||
+    unit === 'date'
+  ) {
+    suffix = 'η'
+  } else {
+    suffix = 'ο'
+  }
+
+  return dirtyNumber + suffix
 }
 
 var localize = {
   ordinalNumber: ordinalNumber,
-
   era: buildLocalizeFn({
     values: eraValues,
     defaultWidth: 'wide'
   }),
-
   quarter: buildLocalizeFn({
     values: quarterValues,
     defaultWidth: 'wide',
@@ -173,9 +192,14 @@ var localize = {
       return Number(quarter) - 1
     }
   }),
-
   month: buildLocalizeFn({
     values: monthValues,
+    defaultWidth: 'wide',
+    formattingValues: formattingMonthValues,
+    defaultFormattingWidth: 'wide'
+  }),
+  day: buildLocalizeFn({
+    values: dayValues,
     defaultWidth: 'wide'
   }),
 

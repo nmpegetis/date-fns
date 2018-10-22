@@ -11,7 +11,10 @@ var matchEraPatterns = {
 }
 var parseEraPatterns = {
   any: [/^ac/i, /^dc/i],
-  wide: [/^(antes de cristo|antes da era com[uú]n)/i, /^(despois de cristo|era com[uú]n)/i]
+  wide: [
+    /^(antes de cristo|antes da era com[uú]n)/i,
+    /^(despois de cristo|era com[uú]n)/i
+  ]
 }
 
 var matchQuarterPatterns = {
@@ -29,8 +32,34 @@ var matchMonthPatterns = {
   wide: /^(xaneiro|febreiro|marzo|abril|maio|xuño|xullo|agosto|setembro|outubro|novembro|decembro)/i
 }
 var parseMonthPatterns = {
-  narrow: [/^x/i, /^f/i, /^m/i, /^a/i, /^m/i, /^x/i, /^x/i, /^a/i, /^s/i, /^o/i, /^n/i, /^d/i],
-  any: [/^xan/i, /^feb/i, /^mar/i, /^abr/i, /^mai/i, /^xun/i, /^xul/i, /^ago/i, /^set/i, /^out/i, /^nov/i, /^dec/i]
+  narrow: [
+    /^x/i,
+    /^f/i,
+    /^m/i,
+    /^a/i,
+    /^m/i,
+    /^x/i,
+    /^x/i,
+    /^a/i,
+    /^s/i,
+    /^o/i,
+    /^n/i,
+    /^d/i
+  ],
+  any: [
+    /^xan/i,
+    /^feb/i,
+    /^mar/i,
+    /^abr/i,
+    /^mai/i,
+    /^xun/i,
+    /^xul/i,
+    /^ago/i,
+    /^set/i,
+    /^out/i,
+    /^nov/i,
+    /^dec/i
+  ]
 }
 
 var matchDayPatterns = {
@@ -40,8 +69,8 @@ var matchDayPatterns = {
   wide: /^(domingo|luns|martes|m[eé]rcores|xoves|venres|s[áa]bado)/i
 }
 var parseDayPatterns = {
-  narrow: [/^d/i, /^l/i, /^m/i, /^m/i, /^j/i, /^v/i, /^s/i],
-  any: [/^do/i, /^lu/i, /^ma/i, /^mi/i, /^ju/i, /^vi/i, /^sa/i]
+  narrow: [/^d/i, /^l/i, /^m/i, /^m/i, /^x/i, /^v/i, /^s/i],
+  any: [/^do/i, /^lu/i, /^ma/i, /^me/i, /^xo/i, /^ve/i, /^sa/i]
 }
 
 var matchDayPeriodPatterns = {
@@ -65,7 +94,7 @@ var match = {
   ordinalNumber: buildMatchPatternFn({
     matchPattern: matchOrdinalNumberPattern,
     parsePattern: parseOrdinalNumberPattern,
-    valueCallback: function (value) {
+    valueCallback: function(value) {
       return parseInt(value, 10)
     }
   }),
@@ -82,7 +111,7 @@ var match = {
     defaultMatchWidth: 'wide',
     parsePatterns: parseQuarterPatterns,
     defaultParseWidth: 'any',
-    valueCallback: function (index) {
+    valueCallback: function(index) {
       return index + 1
     }
   }),

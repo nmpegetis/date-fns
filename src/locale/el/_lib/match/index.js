@@ -6,8 +6,8 @@ var parseOrdinalNumberPattern = /\d+/i
 
 var matchEraPatterns = {
   narrow: /^(πΧ|μΧ)/i,
-  abbreviated: /^(π\.?\s?Χ\.?|μ\.?\s?Χ\.?)/i,
-  wide: /^(προ Χριστού|μετά Χριστόν)/i
+  abbreviated: /^(π\.?\s?χ\.?|π\.?\s?κ\.?\s?χ\.?|μ\.?\s?χ\.?|κ\.?\s?χ\.?)/i,
+  wide: /^(προ Χριστο(ύ|υ)|πριν απ(ό|ο) την Κοιν(ή|η) Χρονολογ(ί|ι)α|μετ(ά|α) Χριστ(ό|ο)ν|Κοιν(ή|η) Χρονολογ(ί|ι)α)/i
 }
 var parseEraPatterns = {
   any: [/^πΧ/i, /^μΧ/i],
@@ -26,8 +26,8 @@ var parseQuarterPatterns = {
 
 var matchMonthPatterns = {
   narrow: /^[ιφμαμιιασονδ]/i,
-  abbreviated: /^(Γεν|Φεβ|Μαρ|Απρ|Μαΐου|Ιούν|Ιούλ|Αυγ|Σεπ|Οκτ|Νοε|Δεκ)/i,
-  wide: /^(Ιανουαρίου|Φεβρουαρίου|Μαρτίου|Απριλίου|Μαΐου|Ιουνίου|Ιουλίου|Αυγούστου|Σεπτεμβρίου|Οκτωβρίου|Νοεμβρίου|Δεκεμβρίου)/i
+  abbreviated: /^(ιαν|φεβ|μαρ|απρ|μαι|ιουν|ιουλ|αυγ|σεπ|οκτ|νοε|δεκ)/i,
+  wide: /^(ιανου(ά|α)ριος|φεβρου(ά|α)ριος|μ(ά|α)ρτιος|απρ(ί|ί)λιος|μ(ά|α)ιος|ιο(ύ|υ)νιος|ιο(ύ|υ)λιος|α(ύ|υ)γουστος|σεπτ(έ|ε)μβριος|οκτ(ώ|ω)βριος|νο(έ|ε)μβριος|δεκ(έ|ε)μβριος)/i
 }
 var parseMonthPatterns = {
   narrow: [
@@ -61,10 +61,10 @@ var parseMonthPatterns = {
 }
 
 var matchDayPatterns = {
-  narrow: /^[κδττππσ]/i,
+  narrow: /^[κδτπ]/i,
   short: /^(κυ|δε|τρ|τε|πε|πα|σα)/i,
   abbreviated: /^(κυρ|δευ|τρι|τετ|πεμ|παρ|σαβ)/i,
-  wide: /^(κυριακή|δευτέρα|τρίτη|τετάρτη|πέμπτη|παρασκευή|σά(β|ββ)ατο)/i
+  wide: /^(κυριακ(ή|η)|δευτ(έ|ε)ρα|τρ(ί|ι)τη|τετ(ά|α)ρτη|π(έ|ε)μπτη|παρασκευ(ή|η)|σ(ά|α)ββατο)/i
 }
 var parseDayPatterns = {
   narrow: [/^κ/i, /^δ/i, /^τ/i, /^τ/i, /^π/i, /^π/i, /^σ/i],
@@ -72,19 +72,19 @@ var parseDayPatterns = {
 }
 
 var matchDayPeriodPatterns = {
-  narrow: /^(π|μ|μεσάνυχτα|μεσημέρι|(το|τη|στο|στη) (πρωί|απόγευμα|βράδυ|νύχτα))/i,
-  any: /^([πμ]\.?\s?μ\.?|τα μεσάνυχτα|το μεσημέρι|(το|τη|στο|στη) (πρωί|απόγευμα|βράδυ|νύχτα))/i
+  narrow: /^(π|μ|μεσ(ά|α)νυχτα|μεσημ(έ|ε)ρι|(το|τη|στο|στη) (πρω(ί|ι)|απόγευμα|βρ(ά|α)δυ|ν(ύ|υ)χτα))/i,
+  any: /^([πμ]\.?\s?μ\.?|μεσ(ά|α)νυχτα|μεσημ(έ|ε)ρι|(το|τη|στο|στη) (πρω(ί|ι)|απ(ό|ο)γευμα|βρ(ά|α)δυ|ν(ύ|υ)χτα))/i
 }
 var parseDayPeriodPatterns = {
   any: {
     am: /^π/i,
     pm: /^μ/i,
-    midnight: /μεσάνυχτα/i,
-    noon: /μεσημέρι/i,
-    morning: /πρωί/i,
-    afternoon: /απόγευμα/i,
-    evening: /βράδυ/i,
-    night: /νύχτα/i
+    midnight: /μεσ(ά|α)ν/i,
+    noon: /^μεσημ(έ|ε)/i,
+    morning: /πρω(ί|ι)/i,
+    afternoon: /απ(ό|ο)γευμα/i,
+    evening: /βρ(ά|α)δυ/i,
+    night: /ν(ύ|υ)χτα/i
   }
 }
 
@@ -99,9 +99,9 @@ var match = {
 
   era: buildMatchFn({
     matchPatterns: matchEraPatterns,
-    defaultMatchWidth: 'abbreviated',
+    defaultMatchWidth: 'wide',
     parsePatterns: parseEraPatterns,
-    defaultParseWidth: 'abbreviated'
+    defaultParseWidth: 'any'
   }),
 
   quarter: buildMatchFn({

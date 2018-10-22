@@ -47,8 +47,8 @@ var formatDistanceLocale = {
   },
 
   aboutXYears: {
-    one: 'arredor de 1 año',
-    other: 'arredor de {{count}} años'
+    one: 'arredor de 1 ano',
+    other: 'arredor de {{count}} anos'
   },
 
   xYears: {
@@ -67,7 +67,7 @@ var formatDistanceLocale = {
   }
 }
 
-export default function formatDistance (token, count, options) {
+export default function formatDistance(token, count, options) {
   options = options || {}
 
   var result
@@ -83,7 +83,7 @@ export default function formatDistance (token, count, options) {
     if (options.comparison > 0) {
       return 'en ' + result
     } else {
-      return 'fai ' + result
+      return 'hai ' + result
     }
   }
 

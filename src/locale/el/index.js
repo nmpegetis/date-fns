@@ -10,6 +10,7 @@ import match from './_lib/match/index.js'
  * @summary Greek locale.
  * @language Greek
  * @iso-639-2 ell
+ * @author Fanis Katsimpas [@fanixk]{@link https://github.com/fanixk}
  * @author Theodoros Orfanidis [@teoulas]{@link https://github.com/teoulas}
  * @author Nikolas Begetis [@nmpegetis]{@link https://github.com/nmpegetis}
  */
