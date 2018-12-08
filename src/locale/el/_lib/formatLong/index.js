@@ -8,21 +8,21 @@ var dateFormats = {
 }
 
 var timeFormats = {
-  full: 'HH:mm:ss zzzz',
-  long: 'HH:mm:ss z',
-  medium: 'HH:mm:ss',
-  short: 'HH:mm'
+  full: 'hh:mm:ss zzzz',
+  long: 'hh:mm:ss z',
+  medium: 'hh:mm:ss a',
+  short: 'hh:mm a'
 }
 
 var dateTimeFormats = {
   full:
     '{{time}}' === '1' || '{{time}}' === '13'
-      ? "{{date}} 'στις' {{time}}"
-      : "{{date}} 'στη' {{time}}",
+      ? "{{date}} 'στη' {{time}}"
+      : "{{date}} 'στις' {{time}}",
   long:
     '{{time}}' === '1' || '{{time}}' === '13'
-      ? "{{date}} 'στις' {{time}}"
-      : "{{date}} 'στη' {{time}}",
+      ? "{{date}} 'στη' {{time}}"
+      : "{{date}} 'στις' {{time}}",
   medium: '{{date}}, {{time}}',
   short: '{{date}}, {{time}}'
 }

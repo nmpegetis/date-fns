@@ -12,13 +12,13 @@ var matchEraPatterns = {
 var parseEraPatterns = {
   any: [/^πΧ/i, /^μΧ/i],
   abbreviated: /^(π\.?\s?Χ\.?|μ\.?\s?Χ\.?)/i,
-  wide: [/^(προ Χριστού)/i, /^(μετά Χριστόν)/i]
+  wide: [/^(προ Χριστο(ύ|υ))/i, /^(μετ(ά|α) Χριστ(ό|ο)ν)/i]
 }
 
 var matchQuarterPatterns = {
-  narrow: /^[1234]/i,
-  abbreviated: /^[1234](ο|ο|ο|ο)? τρίμηνο/i,
-  wide: /^(α'|β'|γ'|δ')? τρίμηνο/i
+  narrow: /^[αβγδ]'/i,
+  abbreviated: /^T[1234]/i,
+  wide: /^[1234](ο)? τρ(ί|ι)μηνο/i
 }
 var parseQuarterPatterns = {
   any: [/1/i, /2/i, /3/i, /4/i]
@@ -62,8 +62,8 @@ var parseMonthPatterns = {
 
 var matchDayPatterns = {
   narrow: /^[κδτπ]/i,
-  short: /^(κυ|δε|τρ|τε|πε|πα|σα)/i,
-  abbreviated: /^(κυρ|δευ|τρι|τετ|πεμ|παρ|σαβ)/i,
+  short: /^(κυ|δε|τρ|τε|π(έ|ε)|πα|σ(ά|α))/i,
+  abbreviated: /^(κυρ|δευ|τρ(ί|ι)|τετ|π(έ|ε)μ|παρ|σ(ά|α)β)/i,
   wide: /^(κυριακ(ή|η)|δευτ(έ|ε)ρα|τρ(ί|ι)τη|τετ(ά|α)ρτη|π(έ|ε)μπτη|παρασκευ(ή|η)|σ(ά|α)ββατο)/i
 }
 var parseDayPatterns = {

@@ -7,9 +7,9 @@ var eraValues = {
 }
 
 var quarterValues = {
-  narrow: ['1', '2', '3', '4'],
+  narrow: ["α'", "β'", "γ'", "δ'"],
   abbreviated: ['Τ1', 'Τ2', 'Τ3', 'Τ4'],
-  wide: ['1º τρίμηνο', '2º τρίμηνο', '3º τρίμηνο', '4º τρίμηνο']
+  wide: ['1o τρίμηνο', '2o τρίμηνο', '3o τρίμηνο', '4º τρίμηνο']
 }
 
 var monthValues = {
@@ -103,8 +103,8 @@ var formattingDayPeriodValues = {
     night: 'τη νύχτα'
   },
   abbreviated: {
-    am: 'πμ',
-    pm: 'μμ',
+    am: 'π.μ.',
+    pm: 'μ.μ.',
     midnight: 'μεσάνυχτα',
     noon: 'μεσημέρι',
     morning: 'το πρωί',
